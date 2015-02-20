@@ -19,23 +19,25 @@ def shared_setup():
 if __name__ == '__main__':
 
     plots = [scatter_plot, 
-            regression_line_plot,
             estimated_y_plot, 
+            regression_line_plot,
             sum_of_squares_regression_plot_with_line, 
             sum_of_squares_regression_plot_with_box, 
+
+
             ]
 
-    rec = pd.DataFrame({
-        'x': [1,1,5,5,10,10],
-        'y': [1,5,1,5,1,5]})
-    rec.name = 'rectangle'
+    normal = pd.DataFrame({
+        'x': [1,2,3,4,5,6,7],
+        'y': [1,3,2,5,3,7,5]})
+    normal.name = ''
 
     outlier = pd.DataFrame({
-        'x': [1,1,5,5,10,10],
-        'y': [1,5,1,10,30,5]})
-    outlier.name = 'rectangle with an outlier'
+        'x': [1,1,5,5,25,10],
+        'y': [1,5,1,10,10,5]})
+    outlier.name = 'with outlier'
 
-    dataframes = [rec, outlier]
+    dataframes = [normal, outlier]
 
     for df in dataframes:
         linear_regression(df)
@@ -44,5 +46,5 @@ if __name__ == '__main__':
         # now we want to successively create plots and overlay them over previous 
         # ones
         for i in range(len(pc)):
-            fname = 'Linear Regression example {0} part {1}'.format(pc.dfs[i].name, i)
-            pc.graph(fname, setup=shared_setup, start=0, stop=1+i)
+            fname = 'Linear Regression {0} example part {1}'.format(pc.dfs[i].name, i)
+            pc.graph(fname, directory='images', setup=shared_setup, start=0, stop=1+i)

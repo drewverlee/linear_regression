@@ -24,7 +24,7 @@ class PlotContainer(object):
         self.dfs.append(dataframe)
 
 
-    def graph(self, fname='', setup=None,  start=0, stop=None, clean=True):
+    def graph(self, fname='', directory='', setup=None,  start=0, stop=None, clean=True):
         """
         creates the graph from the containers plots and DataFrame Store.
         fname: string: filename
@@ -37,7 +37,7 @@ class PlotContainer(object):
             plot(self.dfs[i])
         setup()
         plt.title(fname)
-
-        plt.show() if not fname else plt.savefig(fname)
+        path = fname if not directory else directory + '/' + fname
+        plt.show() if not fname else plt.savefig(path)
         if clean: plt.gca().cla()
 
